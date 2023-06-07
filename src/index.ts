@@ -43,8 +43,14 @@ async function bootstrap() {
 
     plugins: [
       process.env.NODE_ENV === "production"
-        ? ApolloServerPluginLandingPageProductionDefault()
-        : ApolloServerPluginLandingPageGraphQLPlayground(),
+        ? ApolloServerPluginLandingPageProductionDefault({
+            includeCookies: true,
+          })
+        : ApolloServerPluginLandingPageGraphQLPlayground({
+            settings: {
+              "request.credentials": "include",
+            },
+          }),
     ],
   });
   await connectToMongo();
