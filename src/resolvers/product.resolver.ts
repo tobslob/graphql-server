@@ -22,7 +22,7 @@ export class productResolver {
     });
   }
 
-  @Query(() => Product)
+  @Query(() => Product, { nullable: true })
   Product(@Arg("input") input: GetProductInput) {
     return this.productService.findSingleProduct({
       ...input,
